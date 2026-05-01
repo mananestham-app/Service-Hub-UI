@@ -5,7 +5,6 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "rootDirectory": "packages/tap-to-eat-mfe",
   "env": {
     "NODE_ENV": "production"
   },

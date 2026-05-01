@@ -5,7 +5,6 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "rootDirectory": "packages/find-a-chef-mfe",
   "env": {
     "NODE_ENV": "production"
   },
