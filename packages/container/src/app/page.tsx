@@ -99,7 +99,7 @@ export default function Home() {
               {isDropdownOpen && (
                 <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2 w-64 z-50">
                   <a
-                    href={process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-ui-tap-to-eat-mfe.vercel.app/tap-to-eat' : 'http://localhost:3001'}
+                    href={process.env.NEXT_PUBLIC_ENVIRONMENT === 'production' ? process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat' : process.env.NEXT_PUBLIC_ENVIRONMENT === 'staging' ? process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat' : 'http://localhost:3001'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors group"
@@ -115,7 +115,7 @@ export default function Home() {
                     <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-primary-600 transition-colors" />
                   </a>
                   <a
-                    href={process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_FIND_A_CHEF_URL || 'https://service-hub-ui-find-a-chef-mfe.vercel.app/find-a-chef' : 'http://localhost:3002'}
+                    href={process.env.NEXT_PUBLIC_ENVIRONMENT === 'production' ? process.env.NEXT_PUBLIC_FIND_A_CHEF_URL || 'https://service-hub-find-a-chef.vercel.app/find-a-chef' : process.env.NEXT_PUBLIC_ENVIRONMENT === 'staging' ? process.env.NEXT_PUBLIC_FIND_A_CHEF_URL || 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef' : 'http://localhost:3002'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-secondary-50 hover:text-secondary-700 transition-colors group"
