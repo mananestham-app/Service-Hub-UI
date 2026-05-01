@@ -6,11 +6,9 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "env": {
-    "NODE_ENV": "production"
-  },
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_API_URL": "https://service-hub-container.vercel.app"
-    }
+    "NODE_ENV": "production",
+    "NEXT_PUBLIC_CONTAINER_URL": "https://service-hub-ui-container-ao9i.vercel.app",
+    "NEXT_PUBLIC_TAP_TO_EAT_URL": "https://service-hub-ui-tap-to-eat-mfe.vercel.app/tap-to-eat",
+    "NEXT_PUBLIC_FIND_A_CHEF_URL": "https://service-hub-ui-find-a-chef-mfe.vercel.app/find-a-chef"
   }
 }
