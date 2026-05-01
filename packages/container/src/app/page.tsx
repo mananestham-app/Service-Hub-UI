@@ -91,22 +91,24 @@ export default function Home() {
               {isDropdownOpen && (
                 <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2 w-48 z-50">
                   <a
-                    href={process.env.NODE_ENV === 'production' ? 'https://tap-to-eat.vercel.app' : 'http://localhost:3001'}
+                    href={process.env.NODE_ENV === 'production' ? 'https://tap-to-eat-service.vercel.app' : 'http://localhost:3001'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition"
-                    onClick={() => setIsDropdownOpen(false)}
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-primary-700 hover:to-primary-800 transition-all transform hover:scale-105 shadow-lg"
                   >
-                    Tap to Eat
+                    <Utensils className="h-5 w-5" />
+                    Try Tap-to-Eat
+                    <ArrowRight className="h-5 w-5" />
                   </a>
                   <a
-                    href={process.env.NODE_ENV === 'production' ? 'https://find-a-chef.vercel.app' : 'http://localhost:3002'}
+                    href={process.env.NODE_ENV === 'production' ? 'https://find-a-chef-service.vercel.app' : 'http://localhost:3002'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition"
-                    onClick={() => setIsDropdownOpen(false)}
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-secondary-700 hover:to-secondary-800 transition-all transform hover:scale-105 shadow-lg"
                   >
+                    <ChefHat className="h-5 w-5" />
                     Find a Chef
+                    <ArrowRight className="h-5 w-5" />
                   </a>
                 </div>
               )}

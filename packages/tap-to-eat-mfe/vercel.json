@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "tap-to-eat-service",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "rootDirectory": "packages/tap-to-eat-mfe",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://tap-to-eat-service.vercel.app"
+    }
+  }
+}

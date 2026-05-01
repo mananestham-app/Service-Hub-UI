@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "find-a-chef-service",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "rootDirectory": "packages/find-a-chef-mfe",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://find-a-chef-service.vercel.app"
+    }
+  }
+}
