@@ -22,50 +22,73 @@ export default function Home() {
   // Helper function to get correct URL based on environment
   const getServiceUrl = (serviceType: 'tap-to-eat' | 'find-a-chef') => {
     const env = process.env.NEXT_PUBLIC_ENVIRONMENT || process.env.NODE_ENV || 'development'
+    const hostname = typeof window !== 'undefined' ? window.location.hostname : 'server'
+    
+    console.log('=== URL RESOLUTION DEBUG ===')
+    console.log('Environment Variables:', {
+      NODE_ENV: process.env.NODE_ENV,
+      NEXT_PUBLIC_ENVIRONMENT: process.env.NEXT_PUBLIC_ENVIRONMENT,
+      NEXT_PUBLIC_TAP_TO_EAT_URL: process.env.NEXT_PUBLIC_TAP_TO_EAT_URL,
+      NEXT_PUBLIC_FIND_A_CHEF_URL: process.env.NEXT_PUBLIC_FIND_A_CHEF_URL,
+      NEXT_PUBLIC_CONTAINER_URL: process.env.NEXT_PUBLIC_CONTAINER_URL
+    })
     console.log('Current environment detected:', env)
+    console.log('Hostname:', hostname)
     
     // Check if we're on staging domain (more reliable than env vars)
-    const isStagingDomain = typeof window !== 'undefined' && window.location.hostname.includes('staging.vercel.app')
-    const isProductionDomain = typeof window !== 'undefined' && window.location.hostname === 'service-hub-container.vercel.app'
+    const isStagingDomain = hostname.includes('staging.vercel.app')
+    const isProductionDomain = hostname === 'service-hub-container.vercel.app'
     
-    console.log('Domain detection:', { isStagingDomain, isProductionDomain, hostname: typeof window !== 'undefined' ? window.location.hostname : 'server' })
+    console.log('Domain detection:', { isStagingDomain, isProductionDomain })
+    
+    let finalUrl = ''
     
     if (isProductionDomain) {
       // Production: Use hardcoded production URLs (ignore env vars)
+      console.log('Using production domain detection')
       if (serviceType === 'tap-to-eat') {
-        return 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
+        finalUrl = 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
       } else {
-        return 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
+        finalUrl = 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
       }
     } else if (isStagingDomain) {
       // Staging: Use hardcoded staging URLs (ignore env vars)
+      console.log('Using staging domain detection')
       if (serviceType === 'tap-to-eat') {
-        return 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
+        finalUrl = 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
       } else {
-        return 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
+        finalUrl = 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
       }
     } else if (env === 'production') {
-      // Production fallback: Use env vars or hardcoded production URLs
+      // Production fallback: Use hardcoded production URLs (ignore env vars to prevent wrong URLs)
+      console.log('Using production environment fallback')
       if (serviceType === 'tap-to-eat') {
-        return process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
+        finalUrl = 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
       } else {
-        return process.env.NEXT_PUBLIC_FIND_A_CHEF_URL || 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
+        finalUrl = 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
       }
     } else if (env === 'staging') {
-      // Staging fallback: Use env vars or hardcoded staging URLs
+      // Staging fallback: Use hardcoded staging URLs (ignore env vars to prevent wrong URLs)
+      console.log('Using staging environment fallback')
       if (serviceType === 'tap-to-eat') {
-        return process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
+        finalUrl = 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
       } else {
-        return process.env.NEXT_PUBLIC_FIND_A_CHEF_URL || 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
+        finalUrl = 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
       }
     } else {
       // Development
+      console.log('Using development environment')
       if (serviceType === 'tap-to-eat') {
-        return 'http://localhost:3001'
+        finalUrl = 'http://localhost:3001'
       } else {
-        return 'http://localhost:3002'
+        finalUrl = 'http://localhost:3002'
       }
     }
+    
+    console.log(`Final URL for ${serviceType}:`, finalUrl)
+    console.log('=== END DEBUG ===')
+    
+    return finalUrl
   }
 
   useEffect(() => {
