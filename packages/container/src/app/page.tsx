@@ -43,25 +43,18 @@ export default function Home() {
     
     let finalUrl = ''
     
-    if (isProductionDomain) {
-      // Production: Use hardcoded production URLs (ignore env vars)
-      console.log('Using production domain detection')
-      if (serviceType === 'tap-to-eat') {
-        finalUrl = 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
-      } else {
-        finalUrl = 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
-      }
-    } else if (isStagingDomain) {
+    // PRIORITY 1: Staging domain detection (highest priority)
+    if (isStagingDomain) {
       // Staging: Use hardcoded staging URLs (ignore env vars)
-      console.log('Using staging domain detection')
+      console.log('Using staging domain detection (PRIORITY 1)')
       if (serviceType === 'tap-to-eat') {
         finalUrl = 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
       } else {
         finalUrl = 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
       }
-    } else if (env === 'production') {
-      // Production fallback: Use hardcoded production URLs (ignore env vars to prevent wrong URLs)
-      console.log('Using production environment fallback')
+    } else if (isProductionDomain) {
+      // Production: Use hardcoded production URLs (ignore env vars)
+      console.log('Using production domain detection')
       if (serviceType === 'tap-to-eat') {
         finalUrl = 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
       } else {
@@ -74,6 +67,14 @@ export default function Home() {
         finalUrl = 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
       } else {
         finalUrl = 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
+      }
+    } else if (env === 'production') {
+      // Production fallback: Use hardcoded production URLs (ignore env vars to prevent wrong URLs)
+      console.log('Using production environment fallback')
+      if (serviceType === 'tap-to-eat') {
+        finalUrl = 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
+      } else {
+        finalUrl = 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
       }
     } else {
       // Development
