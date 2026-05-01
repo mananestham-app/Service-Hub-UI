@@ -53,12 +53,12 @@ export default function Home() {
         finalUrl = 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
       }
     } else if (isProductionDomain) {
-      // Production: Use hardcoded production URLs (ignore env vars)
-      console.log('Using production domain detection')
+      // Production: Use staging URLs (temporary fix)
+      console.log('Using production domain detection (redirected to staging)')
       if (serviceType === 'tap-to-eat') {
-        finalUrl = 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
+        finalUrl = 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
       } else {
-        finalUrl = 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
+        finalUrl = 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
       }
     } else if (env === 'staging') {
       // Staging fallback: Use hardcoded staging URLs (ignore env vars to prevent wrong URLs)
@@ -69,12 +69,12 @@ export default function Home() {
         finalUrl = 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
       }
     } else if (env === 'production') {
-      // Production fallback: Use hardcoded production URLs (ignore env vars to prevent wrong URLs)
-      console.log('Using production environment fallback')
+      // Production fallback: Use staging URLs (temporary fix)
+      console.log('Using production environment fallback (redirected to staging)')
       if (serviceType === 'tap-to-eat') {
-        finalUrl = 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
+        finalUrl = 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
       } else {
-        finalUrl = 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
+        finalUrl = 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
       }
     } else {
       // Development
