@@ -24,13 +24,19 @@ export default function Home() {
     const env = process.env.NEXT_PUBLIC_ENVIRONMENT || process.env.NODE_ENV || 'development'
     console.log('Current environment detected:', env)
     
-    if (env === 'production') {
+    // Check if we're on staging domain (more reliable than env vars)
+    const isStagingDomain = typeof window !== 'undefined' && window.location.hostname.includes('staging.vercel.app')
+    const isProductionDomain = typeof window !== 'undefined' && window.location.hostname === 'service-hub-container.vercel.app'
+    
+    console.log('Domain detection:', { isStagingDomain, isProductionDomain, hostname: typeof window !== 'undefined' ? window.location.hostname : 'server' })
+    
+    if (isProductionDomain || env === 'production') {
       if (serviceType === 'tap-to-eat') {
         return process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
       } else {
         return process.env.NEXT_PUBLIC_FIND_A_CHEF_URL || 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
       }
-    } else if (env === 'staging') {
+    } else if (isStagingDomain || env === 'staging') {
       if (serviceType === 'tap-to-eat') {
         return process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
       } else {
