@@ -1,0 +1,30 @@
+# GitHub Setup Commands for Service Hub UI
+# Run these commands after installing Git
+
+# 1. Initialize Git repository
+git init
+
+# 2. Configure Git credentials (replace with your email)
+git config --global user.name "mananestham-app"
+git config --global user.email "your-email@example.com"
+
+# 3. Add all files to Git
+git add .
+
+# 4. Create initial commit
+git commit -m "🚀 Initial commit: Service Hub micro-frontend platform
+
+- Container app with service navigation
+- Tap-to-Eat MFE (restaurant ordering)
+- Find-a-Chef MFE (chef booking)
+- Shared package for types and utilities
+- Modern UI with animations and effects
+- Complete documentation and deployment setup"
+
+# 5. Add remote repository
+git remote add origin https://github.com/mananestham-app/service-hub-ui.git
+
+# 6. Push to GitHub
+git push -u origin main
+
+# Repository will be available at: https://github.com/mananestham-app/service-hub-ui

@@ -1,0 +1,31 @@
+{
+  "name": "tap-to-eat-platform",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev:container",
+    "dev:container": "npm run dev --workspace=@tap-to-eat/container",
+    "dev:tap-to-eat": "npm run dev --workspace=@tap-to-eat/tap-to-eat-mfe",
+    "dev:find-a-chef": "npm run dev --workspace=@tap-to-eat/find-a-chef-mfe",
+    "dev:all": "concurrently \"npm run dev:container\" \"npm run dev:tap-to-eat\" \"npm run dev:find-a-chef\"",
+    "build": "npm run build --workspaces",
+    "start": "npm run dev:container"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "@module-federation/nextjs-mf": "^8.8.66",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "webpack": "^5.106.2"
+  }
+}

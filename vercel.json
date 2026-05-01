@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "projects": {
+    "container": "packages/container",
+    "tap-to-eat": "packages/tap-to-eat-mfe",
+    "find-a-chef": "packages/find-a-chef-mfe"
+  },
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs"
+}
