@@ -30,13 +30,29 @@ export default function Home() {
     
     console.log('Domain detection:', { isStagingDomain, isProductionDomain, hostname: typeof window !== 'undefined' ? window.location.hostname : 'server' })
     
-    if (isProductionDomain || env === 'production') {
+    if (isProductionDomain) {
+      // Production: Use hardcoded production URLs (ignore env vars)
+      if (serviceType === 'tap-to-eat') {
+        return 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
+      } else {
+        return 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
+      }
+    } else if (isStagingDomain) {
+      // Staging: Use hardcoded staging URLs (ignore env vars)
+      if (serviceType === 'tap-to-eat') {
+        return 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
+      } else {
+        return 'https://service-hub-find-a-chef-staging.vercel.app/find-a-chef'
+      }
+    } else if (env === 'production') {
+      // Production fallback: Use env vars or hardcoded production URLs
       if (serviceType === 'tap-to-eat') {
         return process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-tap-to-eat.vercel.app/tap-to-eat'
       } else {
         return process.env.NEXT_PUBLIC_FIND_A_CHEF_URL || 'https://service-hub-find-a-chef.vercel.app/find-a-chef'
       }
-    } else if (isStagingDomain || env === 'staging') {
+    } else if (env === 'staging') {
+      // Staging fallback: Use env vars or hardcoded staging URLs
       if (serviceType === 'tap-to-eat') {
         return process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat'
       } else {
