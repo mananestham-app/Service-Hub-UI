@@ -1,26 +1,34 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
-import { Utensils, ChefHat, QrCode, ArrowRight, ChevronDown, Info, Sparkles, Zap, Globe, TrendingUp } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Utensils, ChefHat, QrCode, ArrowRight, ChevronDown, Info, Sparkles, Zap, Globe, TrendingUp, Menu, X, Star, Shield, Clock, Users } from "lucide-react"
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
     const handleScroll = () => setScrollY(window.scrollY)
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
     
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('scroll', handleScroll)
+    document.addEventListener('mousedown', handleClickOutside)
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
 
@@ -80,7 +88,7 @@ export default function Home() {
             <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">Service Hub</span>
           </div>
           <div className="flex gap-8 items-center">
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-2 text-gray-700 hover:text-primary-600 transition"
@@ -89,26 +97,38 @@ export default function Home() {
                 <ChevronDown className={`h-4 w-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2 w-48 z-50">
+                <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2 w-64 z-50">
                   <a
                     href={process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_TAP_TO_EAT_URL || 'https://service-hub-ui-tap-to-eat-mfe.vercel.app/tap-to-eat' : 'http://localhost:3001'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-primary-700 hover:to-primary-800 transition-all transform hover:scale-105 shadow-lg"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors group"
+                    onClick={() => setIsDropdownOpen(false)}
                   >
-                    <Utensils className="h-5 w-5" />
-                    Try Tap-to-Eat
-                    <ArrowRight className="h-5 w-5" />
+                    <div className="flex items-center justify-center w-8 h-8 bg-primary-100 rounded-lg group-hover:bg-primary-200 transition-colors">
+                      <Utensils className="h-4 w-4 text-primary-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-900">Tap to Eat</div>
+                      <div className="text-sm text-gray-500">Restaurant ordering</div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-primary-600 transition-colors" />
                   </a>
                   <a
                     href={process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_FIND_A_CHEF_URL || 'https://service-hub-ui-find-a-chef-mfe.vercel.app/find-a-chef' : 'http://localhost:3002'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary-600 to-secondary-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-secondary-700 hover:to-secondary-800 transition-all transform hover:scale-105 shadow-lg"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-secondary-50 hover:text-secondary-700 transition-colors group"
+                    onClick={() => setIsDropdownOpen(false)}
                   >
-                    <ChefHat className="h-5 w-5" />
-                    Find a Chef
-                    <ArrowRight className="h-5 w-5" />
+                    <div className="flex items-center justify-center w-8 h-8 bg-secondary-100 rounded-lg group-hover:bg-secondary-200 transition-colors">
+                      <ChefHat className="h-4 w-4 text-secondary-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-900">Find a Chef</div>
+                      <div className="text-sm text-gray-500">Chef booking service</div>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-secondary-600 transition-colors" />
                   </a>
                 </div>
               )}
