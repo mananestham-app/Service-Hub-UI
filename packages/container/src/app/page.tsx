@@ -10,6 +10,15 @@ export default function Home() {
   const [scrollY, setScrollY] = useState(0)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
+  // Debug: Log environment variables
+  console.log('Environment Variables:', {
+    NODE_ENV: process.env.NODE_ENV,
+    NEXT_PUBLIC_ENVIRONMENT: process.env.NEXT_PUBLIC_ENVIRONMENT,
+    NEXT_PUBLIC_TAP_TO_EAT_URL: process.env.NEXT_PUBLIC_TAP_TO_EAT_URL,
+    NEXT_PUBLIC_FIND_A_CHEF_URL: process.env.NEXT_PUBLIC_FIND_A_CHEF_URL,
+    NEXT_PUBLIC_CONTAINER_URL: process.env.NEXT_PUBLIC_CONTAINER_URL
+  })
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })

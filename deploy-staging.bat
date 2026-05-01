@@ -4,22 +4,19 @@ echo.
 
 echo 📦 Step 1: Deploy Container App to Staging...
 cd packages/container
-npx vercel --env NODE_ENV=staging --env NEXT_PUBLIC_ENVIRONMENT=staging --env NEXT_PUBLIC_CONTAINER_URL=https://service-hub-container-staging.vercel.app --env NEXT_PUBLIC_TAP_TO_EAT_URL=https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat --env NEXT_PUBLIC_FIND_A_CHEF_URL=https://service-hub-find-a-chef-staging.vercel.app/find-a-chef
-npx vercel alias service-hub-container-staging.vercel.app
+npx vercel --env NODE_ENV=staging --env NEXT_PUBLIC_ENVIRONMENT=staging --env NEXT_PUBLIC_CONTAINER_URL=https://service-hub-container-staging.vercel.app --env NEXT_PUBLIC_TAP_TO_EAT_URL=https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat --env NEXT_PUBLIC_FIND_A_CHEF_URL=https://service-hub-find-a-chef-staging.vercel.app/find-a-chef --alias service-hub-container-staging.vercel.app
 echo ✅ Container App deployed to staging!
 echo.
 
 echo 🍽️ Step 2: Deploy Tap-to-Eat to Staging...
 cd ..\tap-to-eat-mfe
-npx vercel --env NODE_ENV=staging --env NEXT_PUBLIC_ENVIRONMENT=staging --env NEXT_PUBLIC_TAP_TO_EAT_URL=https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat --env NEXT_PUBLIC_CONTAINER_URL=https://service-hub-container-staging.vercel.app --env NEXT_PUBLIC_FIND_A_CHEF_URL=https://service-hub-find-a-chef-staging.vercel.app/find-a-chef
-npx vercel alias service-hub-tap-to-eat-staging.vercel.app
+npx vercel --env NODE_ENV=staging --env NEXT_PUBLIC_ENVIRONMENT=staging --env NEXT_PUBLIC_TAP_TO_EAT_URL=https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat --env NEXT_PUBLIC_CONTAINER_URL=https://service-hub-container-staging.vercel.app --env NEXT_PUBLIC_FIND_A_CHEF_URL=https://service-hub-find-a-chef-staging.vercel.app/find-a-chef --alias service-hub-tap-to-eat-staging.vercel.app
 echo ✅ Tap-to-Eat deployed to staging!
 echo.
 
 echo 👨‍🍳 Step 3: Deploy Find-a-Chef to Staging...
 cd ..\find-a-chef-mfe
-npx vercel --env NODE_ENV=staging --env NEXT_PUBLIC_ENVIRONMENT=staging --env NEXT_PUBLIC_FIND_A_CHEF_URL=https://service-hub-find-a-chef-staging.vercel.app/find-a-chef --env NEXT_PUBLIC_CONTAINER_URL=https://service-hub-container-staging.vercel.app --env NEXT_PUBLIC_TAP_TO_EAT_URL=https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat
-npx vercel alias service-hub-find-a-chef-staging.vercel.app
+npx vercel --env NODE_ENV=staging --env NEXT_PUBLIC_ENVIRONMENT=staging --env NEXT_PUBLIC_FIND_A_CHEF_URL=https://service-hub-find-a-chef-staging.vercel.app/find-a-chef --env NEXT_PUBLIC_CONTAINER_URL=https://service-hub-container-staging.vercel.app --env NEXT_PUBLIC_TAP_TO_EAT_URL=https://service-hub-tap-to-eat-staging.vercel.app/tap-to-eat --alias service-hub-find-a-chef-staging.vercel.app
 echo ✅ Find-a-Chef deployed to staging!
 echo.
 
